@@ -87,6 +87,24 @@ class DroneController:
             print("Battery query error:", str(e))
             return None
 
+    def monitor_status(self, interval=5):
+        """Monitor drone status periodically."""
+        if not self.connected:
+            print("Error: Drone not connected")
+            return
+        try:
+            while self.connected:
+                battery = self.get_battery()
+                if battery is not None and battery < 15:
+                    print("Low battery (<15%), landing drone")
+                    self.land()
+                    self.disconnect()
+                    break
+                time.sleep(interval)
+        except KeyboardInterrupt:
+            print("Status monitoring stopped by user")
+        except Exception as e:
+            print("Status monitoring error:", str(e))
 
     def disconnect(self):
         """End the drone connection."""

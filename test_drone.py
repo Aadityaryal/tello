@@ -1,5 +1,6 @@
 from drone_controller import DroneController
 import time
+import threading
 
 def main():
     # Initialize drone controller
@@ -17,8 +18,12 @@ def main():
         print("Battery too low or unavailable, exiting")
         controller.disconnect()
         return
-
     
+    ###(Only when it's more than 5 second)###
+    # Start status monitoring in a separate thread
+    # status_thread = threading.Thread(target=controller.monitor_status, args=(5,))
+    # status_thread.daemon = True  # Stops thread when main program exits
+    # status_thread.start()
     
     # Perform takeoff
     if controller.takeoff():
