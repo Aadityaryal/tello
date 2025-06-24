@@ -1,0 +1,38 @@
+from drone_controller import DroneController
+import time
+
+def main():
+    # Initialize drone controller
+    controller = DroneController()
+    
+    # Connect to drone
+    controller.connect()
+    if not controller.connected:
+        print("Exiting due to connection failure")
+        return
+    
+    # Get initial battery level
+    battery = controller.get_battery()
+    if battery is None or battery < 20:
+        print("Battery too low or unavailable, exiting")
+        controller.disconnect()
+        return
+
+    
+    
+    # Perform takeoff
+    if controller.takeoff():
+        print("Waiting 1 seconds in air")
+        time.sleep(1)
+    
+    # Land the drone
+    controller.land()
+    
+    # Get final battery level
+    controller.get_battery()
+    
+    # Disconnect
+    controller.disconnect()
+
+if __name__ == "__main__":
+    main()

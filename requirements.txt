@@ -1,0 +1,6 @@
+djitellopy
+opencv-python
+ultralytics
+deep_sort_realtime
+numpy
+torch
