@@ -28,7 +28,7 @@ def main():
     # Perform takeoff
     if controller.takeoff():
         print("Waiting 1 seconds in air")
-        time.sleep(1)
+        time.sleep(2)
     
     # Land the drone
     controller.land()
