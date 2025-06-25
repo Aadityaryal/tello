@@ -1,7 +1,7 @@
 djitellopy
 opencv-python
 ultralytics
-deep_sort_realtime
+deep-sort-realtime
 numpy
 torch
 websockets
